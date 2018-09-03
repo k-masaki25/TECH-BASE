@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang = "ja">
 <head>
 <meta charset ="UTF-8">
@@ -18,7 +18,7 @@
 <p><?php
 date_default_timezone_set('ja');
 if(isset($_POST['comment']) && $_POST['comment'] != ''){
-$filename = 'mission_1-6_kimura.txt';
+$filename = 'mission_1-7_YourName.txt';
 $comment = $_POST['comment'];
 $fp = fopen($filename, 'a');
 fwrite($fp, $comment."\r\n");
@@ -34,7 +34,7 @@ echo "ご入力ありがとうございます<br>".date("Y年m月d日 H時i分s�
 <br>
 <p>
 <?php
-$filename = 'mission_1-6_kimura.txt';
+$filename = 'mission_1-7_YourName.txt';
 if(file_exists($filename)){
 $file = new SplFileObject($filename);
 $file->setFlags(SplFileObject::SKIP_EMPTY | SplFileObject::DROP_NEW_LINE);

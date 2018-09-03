@@ -15,7 +15,7 @@
 <p><?php
 date_default_timezone_set('ja');
 if(isset($_POST['comment']) && $_POST['comment'] != ''){
-$filename = 'mission_1-5_kimura.txt';
+$filename = 'mission_1-5_YourName.txt';
 $comment = $_POST['comment'];
 $fp = fopen($filename, 'w');
 fwrite($fp, $comment);
