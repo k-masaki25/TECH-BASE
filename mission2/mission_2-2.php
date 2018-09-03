@@ -22,7 +22,7 @@
 <p><?php
 date_default_timezone_set('ja');
 if(isset($_POST['name']) && isset($_POST['comment']) && $_POST['name'] !='' && $_POST['comment'] != ''){
-	$filename = 'mission_2-2_kimura.txt';
+	$filename = 'mission_2-2_YourName.txt';
 	$name = $_POST['name'];
 	$comment = $_POST['comment'];
 if(file_exists($filename)){
@@ -42,7 +42,7 @@ fclose($fp);
 <?php
 /****************php scripte*************/
 
-$filename = 'mission_2-2_kimura.txt';
+$filename = 'mission_2-2_YourName.txt';
 if(file_exists($filename)){
 	$file = new SplFileObject($filename);
 	$file->setFlags(SplFileObject::SKIP_EMPTY | SplFileObject::DROP_NEW_LINE);

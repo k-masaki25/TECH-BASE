@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang = "ja">
 <?php
-$filename1 = 'mission_2-4_kimura.txt';
-$filenameb = 'before_mission_2-4_kimura.txt';
+$filename1 = 'mission_2-4_YourName.txt';
+$filenameb = 'before_mission_2-4_YourName.txt';
 $filename2 = 'mission_2-4_post_count.txt';
 $filename3 = 'mission_2-4.php';
 ?>

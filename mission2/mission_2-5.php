@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang = "ja">
 <?php
-$filename1 = 'mission_2-5_kimura.txt';
-$filenameb1 = 'before_mission_2-5_kimura.txt';
+$filename1 = 'mission_2-5_YourName.txt';
+$filenameb1 = 'before_mission_2-5_YourName.txt';
 $filename2 = 'mission_2-5_post_count.txt';
 $filename3 = 'mission_2-5.php';
 $filename4 = 'mission_2-5_passward.txt';
-$filenameb4 = 'before_mission_2-5_kimura.txt';
+$filenameb4 = 'before_mission_2-5_YourName.txt';
 ?>
 
 <head>
@@ -112,7 +112,7 @@ isset($_POST['passward']) && $_POST['passward'] != '' &&
 	fwrite($fp2, "投稿数は、". "<>". $n_next_submit. "<>". date("Y/m/d/ H:i:s"));
 	fclose($fp2);
 
-	/*投稿されたコメントに番号を付けて、kimura.txtに書き出し*/
+	/*投稿されたコメントに番号を付けて、YourName.txtに書き出し*/
 	$name = $_POST['name'];
 	$comment = $_POST['comment'];
 
@@ -186,7 +186,7 @@ isset($_POST['passward']) && $_POST['passward']){
 <?php
 /***********************************
  * 
- * kimura.txtの内容を表示する。
+ * YourName.txtの内容を表示する。
  * 
  ***********************************/
 if(file_exists($filename1)){

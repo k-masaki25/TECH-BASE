@@ -10,19 +10,19 @@ $user = 'ユーザー名';
 $passward = 'パスワード';
 $pdo = new PDO($dsn, $user, $passward);
 
-$table1 = 'kimura_4_1';
-$table2 = 'kimura_4_1_count_comment';
+$table1 = 'YourName_4_1';
+$table2 = 'YourName_4_1_count_comment';
 
-$sql = "CREATE TABLE if not exists kimura_4_1 (id INT, name VARCHAR(32), comment TEXT)";
+$sql = "CREATE TABLE if not exists YourName_4_1 (id INT, name VARCHAR(32), comment TEXT)";
 $stmt = $pdo->query($sql);
 
-$sql = "CREATE TABLE if not exists kimura_4_1_count_comment(CountComment varchar(32), n_comment INT)";
+$sql = "CREATE TABLE if not exists YourName_4_1_count_comment(CountComment varchar(32), n_comment INT)";
 $stmt = $pdo->query($sql);
 
-$sql = "CREATE TABLE if not exists kimura_4_1_password (id INT, password TEXT)";
+$sql = "CREATE TABLE if not exists YourName_4_1_password (id INT, password TEXT)";
 $stmt = $pdo->query($sql);
 
-$sql = 'select CountComment, n_comment from kimura_4_1_count_comment';
+$sql = 'select CountComment, n_comment from YourName_4_1_count_comment';
 $result = $pdo->query($sql);
 
 if($result){
@@ -31,7 +31,7 @@ if($result){
 
 
 if($count === 0){
-    $stmt = $pdo -> prepare("INSERT INTO kimura_4_1_count_comment (CountComment, n_comment) VALUES (:CountComment, :value)");
+    $stmt = $pdo -> prepare("INSERT INTO YourName_4_1_count_comment (CountComment, n_comment) VALUES (:CountComment, :value)");
     $stmt->bindParam(':CountComment', $CountComment, PDO::PARAM_STR);
     $stmt->bindValue(':value', 0, PDO::PARAM_INT);
     
@@ -68,7 +68,7 @@ if($count === 0){
 		isset($_POST['edit_password']) && $_POST['edit_password'] != ''){
 
             $id = $_POST['n_edit1'];
-            $sql = 'SELECT * FROM kimura_4_1_password where id = :id';
+            $sql = 'SELECT * FROM YourName_4_1_password where id = :id';
             $sql = $pdo -> prepare($sql);
             $sql -> bindvalue(':id', $id, PDO::PARAM_INT);
             $sql -> execute();
@@ -80,7 +80,7 @@ if($count === 0){
 
             if($password_unit[0] === $_POST['edit_password']){
                 $edit_id = $_POST['n_edit1'];
-            $sql = 'SELECT * FROM kimura_4_1 where id ='. $edit_id;
+            $sql = 'SELECT * FROM YourName_4_1 where id ='. $edit_id;
             $results = $pdo->query($sql);
 
             $edit_unit = array();
@@ -147,7 +147,7 @@ isset($_POST['comment']) && $_POST['comment'] != '' &&
 isset($_POST['password']) && $_POST['password'] != '' &&
 !(isset($_POST['n_edit2']) && $_POST['n_edit2'] != '')){
 
-	$sql = 'SELECT * FROM kimura_4_1_count_comment';
+	$sql = 'SELECT * FROM YourName_4_1_count_comment';
     $results = $pdo -> query($sql);
     $n_comment = array();
     foreach($results as $row){
@@ -156,13 +156,13 @@ isset($_POST['password']) && $_POST['password'] != '' &&
 
     $n_comment = $n_comment[0] + 1;
     $CountComment = '現在の総コメント数';
-    $sql2 = $pdo -> prepare("UPDATE kimura_4_1_count_comment SET n_comment = :n_comment where CountComment = :CountComment");
+    $sql2 = $pdo -> prepare("UPDATE YourName_4_1_count_comment SET n_comment = :n_comment where CountComment = :CountComment");
     $sql2 -> bindParam(':CountComment', $CountComment, PDO::PARAM_STR);
     $sql2 -> bindValue(':n_comment', $n_comment, PDO::PARAM_INT);
     $sql2 -> execute();
 
 
-    $sql1 = $pdo -> prepare("INSERT INTO kimura_4_1 (id, name, comment) VALUES (:id, :name, :comment)");
+    $sql1 = $pdo -> prepare("INSERT INTO YourName_4_1 (id, name, comment) VALUES (:id, :name, :comment)");
     
     $id = $n_comment;
     $name = $_POST['name'];
@@ -173,7 +173,7 @@ isset($_POST['password']) && $_POST['password'] != '' &&
     $sql1 -> bindParam(':comment', $comment, PDO::PARAM_STR);
     $sql1 -> execute();
 
-    $sql = $pdo -> prepare("INSERT INTO kimura_4_1_password (id, password) VALUES (:id, :password)");
+    $sql = $pdo -> prepare("INSERT INTO YourName_4_1_password (id, password) VALUES (:id, :password)");
     
     $id = $n_comment;
     $password = $_POST['password'];
@@ -215,7 +215,7 @@ if(isset($_POST['n_delete']) && $_POST['n_delete'] != '' &&
 isset($_POST['delete_password']) && $_POST['delete_password'] != ''){    //if(is_int($_POST['n_delete'])){	//文字列が数値かどうか
 
     $id = $_POST['n_delete'];
-    $sql = 'SELECT * FROM kimura_4_1_password where id = :id';
+    $sql = 'SELECT * FROM YourName_4_1_password where id = :id';
     $sql = $pdo -> prepare($sql);
     $sql -> bindvalue(':id', $id, PDO::PARAM_INT);
     $sql -> execute();
@@ -225,7 +225,7 @@ isset($_POST['delete_password']) && $_POST['delete_password'] != ''){    //if(is
         $password_unit[] = $row['password'];
     }
     if($password_unit[0] === $_POST['delete_password']){
-        $sql = "DELETE FROM kimura_4_1 WHERE id = :id";
+        $sql = "DELETE FROM YourName_4_1 WHERE id = :id";
  
         // 削除するレコードのIDは空のまま、SQL実行の準備をする
         $stmt = $pdo->prepare($sql);
@@ -238,7 +238,7 @@ isset($_POST['delete_password']) && $_POST['delete_password'] != ''){    //if(is
         // 削除するレコードのIDが入った変数をexecuteにセットしてSQLを実行
         $stmt->execute($params);
 
-        $sql = "DELETE FROM kimura_4_1_password WHERE id = :id";
+        $sql = "DELETE FROM YourName_4_1_password WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $params = array(':id'=>$delete_id);
         $stmt->execute($params);
@@ -259,7 +259,7 @@ isset($_POST['comment']) && $_POST['comment'] != '' &&
 isset($_POST['n_edit2']) && $_POST['n_edit2'] != '' && 
 isset($_POST['password']) && $_POST['password']){
 
-	$sql = $pdo -> prepare("UPDATE kimura_4_1 SET name = :name, comment = :comment where id = :id");
+	$sql = $pdo -> prepare("UPDATE YourName_4_1 SET name = :name, comment = :comment where id = :id");
     $id = intval($_POST['n_edit2']);
     $name = $_POST['name'];
     $comment = $_POST['comment'];
@@ -270,7 +270,7 @@ isset($_POST['password']) && $_POST['password']){
     $sql -> bindParam(':comment', $comment, PDO::PARAM_STR);
     $sql -> execute();
 
-    $sql = $pdo -> prepare("UPDATE kimura_4_1_password SET password = :password where id = :id");
+    $sql = $pdo -> prepare("UPDATE YourName_4_1_password SET password = :password where id = :id");
     $id = intval($_POST['n_edit2']);
     $password = $_POST['password'];
 
@@ -286,7 +286,7 @@ isset($_POST['password']) && $_POST['password']){
 <p>
 
 <?php
-$sql = 'SELECT * FROM kimura_4_1';
+$sql = 'SELECT * FROM YourName_4_1';
 $results = $pdo -> query($sql);
 
 $id = array();
@@ -312,7 +312,7 @@ foreach($results as $row){
 
 echo "<hr>";
 
-$sql = 'SELECT * FROM kimura_4_1_count_comment';
+$sql = 'SELECT * FROM YourName_4_1_count_comment';
 $results = $pdo -> query($sql);
 $n_comment = array();
 foreach($results as $row){

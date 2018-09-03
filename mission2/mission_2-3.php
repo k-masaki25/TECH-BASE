@@ -44,7 +44,7 @@ if(isset($_POST['name']) && isset($_POST['comment']) && $_POST['name'] !='' && $
 	fclose($fp1);
 
 	/*投稿されたコメントに番号を付けて、txtに書き出し。*/
-	$filename = 'mission_2-3_kimura.txt';
+	$filename = 'mission_2-3_YourName.txt';
 	$name = $_POST['name'];
 	$comment = $_POST['comment'];
 
@@ -55,9 +55,9 @@ if(isset($_POST['name']) && isset($_POST['comment']) && $_POST['name'] !='' && $
 /*入力された数字の行の投稿を削除*/
 
 if(isset($_POST['n_delete']) && $_POST['n_delete'] != ''){//if(is_int($_POST['n_delete'])){	//文字列が数値かどうか
-	rename('mission_2-3_kimura.txt', 'before_mission_2-3_kimura.txt');
-	$filename1 = 'before_mission_2-3_kimura.txt';
-	$filename2 = 'mission_2-3_kimura.txt';
+	rename('mission_2-3_YourName.txt', 'before_mission_2-3_YourName.txt');
+	$filename1 = 'before_mission_2-3_YourName.txt';
+	$filename2 = 'mission_2-3_YourName.txt';
 	$fp1 = fopen($filename1, r);
 	$fp2 = fopen($filename2, a);
 	while(($line = fgets($fp1)) !== false){
@@ -79,7 +79,7 @@ if(isset($_POST['n_delete']) && $_POST['n_delete'] != ''){//if(is_int($_POST['n_
 <?php
 /****************php scripte*************/
 
-$filename = 'mission_2-3_kimura.txt';
+$filename = 'mission_2-3_YourName.txt';
 if(file_exists($filename)){
 	$file = new SplFileObject($filename);
 	$file->setFlags(SplFileObject::SKIP_EMPTY | SplFileObject::DROP_NEW_LINE);
